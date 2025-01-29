@@ -8,6 +8,7 @@ img {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 2%;
 }
 
 /* Generelt */
@@ -25,20 +26,44 @@ p {
 }
 
 /* menu */
+.menu a {
+  position: relative;
+  display: inline-block; /* Sørger for, at linjen kun dækker teksten */
+  text-decoration: none;
+}
+
+.menu a::after {
+  /* Hover-effekt designet med hjælp fra ChatGPT.
+   Udviklet i samarbejde med AI for at forbedre brugeroplevelsen.
+*/
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #ff6f00; /* Farven på linjen */
+  left: 0;
+  bottom: 0;
+  transition: width 0.3s ease-in-out;
+}
+
+.menu a:hover::after {
+  width: 100%; /* Linjen dækker kun ordet på hover */
+}
+
 body {
   font-family: "Inter", sans-serif;
   background-color: #c3d9fa; /* Lys neutral baggrund */
 }
 
 nav {
-  background-color: #333; /* Mørk baggrund til menuen */
-  padding: 10px 0;
+  background-color: #0554af; /* Mørk baggrund til menuen */
+  padding: 35px;
 }
 
 .menu {
   list-style: none; /* Fjern punkttegn */
   display: flex; /* Laver en vandret menu */
-  justify-content: center; /* Centrerer menuen */
+  justify-content: right; /* Centrerer menuen */
 }
 
 .menu li {
@@ -49,12 +74,70 @@ nav {
   text-decoration: none; /* Fjern understregning */
   color: white; /* Hvid tekst */
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: normal;
   transition: color 0.3s ease; /* Glidende overgang ved hover */
 }
 
-.menu a:hover {
-  color: #ffcc00; /* Gul farve ved hover */
+.burger {
+  display: none;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 101; /* Sørg for, at burger-menuen er foran */
+  position: absolute; /* Fikserer den relative position */
+  right: 20px; /* Placér burger-menuen 20px fra højre kant */
+  top: 30px; /* Placér burger-menuen 35px fra toppen */
+}
+
+.burger .line {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin-bottom: 5px;
+  transition: 0.2s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .menu {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .burger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .burger.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  nav.active .menu {
+    display: block;
+    background-color: #0554af;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  nav.active .menu li {
+    margin: 10px 20px;
+    text-align: right; /* Justerer hver liste til højre */
+    padding: 10px;
+  }
+
+  nav.active .menu a {
+    font-size: 1rem;
+  }
 }
 
 /* Forside */
@@ -64,12 +147,12 @@ h1 {
 
 .category_list_container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 10px;
 }
 
 .category a {
-  background-color: grey;
+  background-color: #0554af;
   padding: 40px;
   border-radius: 5px;
   display: flex; /* Brug flexbox til centrering */
@@ -77,19 +160,20 @@ h1 {
   text-decoration: none;
   color: white;
   font-weight: normal;
+  font-size: 1.2rem;
 }
 
 .category a:hover {
-  background-color: #555; /* Ændrer baggrundsfarven ved hover */
+  background-color: #02244a; /* Ændrer baggrundsfarven ved hover */
   transform: scale(1.02); /* Lidt zoom-effekt ved hover */
   border-radius: 5px;
 }
 
-.category:hover a {
-  color: #ffcc00; /* Ændrer tekstfarve ved hover */
-}
-
 /* Produktliste */
+
+.grey {
+  color: grey;
+}
 
 .logo {
   font-size: 2rem;
@@ -99,17 +183,21 @@ h1 {
 }
 
 .read_more {
-  color: grey;
+  color: rgb(43, 43, 43);
   text-decoration: underline;
 }
 
 .card {
-  padding: 5px;
+  padding: 10px;
   grid-row: span 5;
   display: grid;
   grid-template-rows: subgrid;
   position: relative;
-  margin-bottom: 10px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  gap: 5px;
+  margin-bottom: 1rem;
 }
 
 .discount {
@@ -118,6 +206,8 @@ h1 {
   right: 0%;
   background-color: lightgreen;
   padding: 10px;
+  border-radius: 3%;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3); /* Ydre skygge */
 }
 
 .product_info {
@@ -131,6 +221,7 @@ h1 {
   background-color: lightgreen;
   padding: 10px;
   border-radius: 3%;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Ydre skygge */
 }
 
 .soldout {
@@ -140,6 +231,8 @@ h1 {
   background-color: grey;
   padding: 10px;
   color: white;
+  border-radius: 3%;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ydre skygge */
 }
 
 .soldout-img {
@@ -206,6 +299,12 @@ select {
 }
 
 @media (min-width: 600px) {
+  .category_list_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+
   .logo {
     font-size: 3rem;
   }
@@ -273,8 +372,12 @@ select {
 }
 @media (min-width: 1000px) {
   /* Generel tekststyling */
+
+  h1 {
+    font-size: 2rem;
+  }
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 
   h3 {
@@ -288,10 +391,11 @@ select {
     grid-template-rows: auto 5;
     gap: 20px;
   }
+
   .discount {
     position: absolute;
-    bottom: 5%;
-    right: 20%;
+    bottom: 2%;
+    right: 5%;
     background-color: lightgreen;
     padding: 20px;
   }
@@ -340,10 +444,11 @@ select {
     font-size: 1.5rem;
   }
   .discount_produkt {
-    bottom: 20%;
-    right: 20%;
-    padding: 20px;
+    bottom: 21%;
+    right: 21%;
+    padding: 30px;
     position: absolute;
+    font-size: 2rem;
   }
 
   .logo {
