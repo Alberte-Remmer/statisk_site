@@ -15,9 +15,19 @@ main {
   margin: 3rem;
 }
 
+h2 {
+  margin-bottom: 1rem;
+}
+
+h3,
+p {
+  margin-bottom: 0.5rem;
+}
+
 /* menu */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #c3d9fa; /* Lys neutral baggrund */
 }
 
 nav {
@@ -81,6 +91,13 @@ h1 {
 
 /* Produktliste */
 
+.logo {
+  font-size: 2rem;
+}
+.red {
+  color: red;
+}
+
 .read_more {
   color: grey;
   text-decoration: underline;
@@ -103,6 +120,19 @@ h1 {
   padding: 10px;
 }
 
+.product_info {
+  position: relative;
+}
+
+.discount_produkt {
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  background-color: lightgreen;
+  padding: 10px;
+  border-radius: 3%;
+}
+
 .soldout {
   position: absolute;
   top: 0%;
@@ -116,7 +146,69 @@ h1 {
   filter: grayscale(100%);
 }
 
+/* product */
+.product_container {
+  gap: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product_purchase {
+  gap: 10px;
+  padding: 30px;
+  background-color: #0554af; /* Mørkeblå baggrund for kontrast */
+  color: white;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: #ff6f00;
+  text-align: center;
+  border-radius: 30px;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 50%;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background-color: #000000;
+}
+
+/* Styling af dropdown-menuen */
+select {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.indryk {
+  text-indent: 20px;
+}
+
+.lagerstatus {
+  text-indent: 20px;
+  color: green;
+  font-weight: bold;
+}
+
+.brødkrumme {
+  color: grey;
+  font-size: 0.8rem;
+  text-decoration: underline;
+}
+
 @media (min-width: 600px) {
+  .logo {
+    font-size: 3rem;
+  }
   .product_list_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -133,8 +225,63 @@ h1 {
     left: 0%;
     padding: 5px;
   }
+
+  /* Product */
+
+  /* Layout for produktcontainer */
+  .product_container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+
+  /* Styling af produktinfo */
+  .product_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Styling af køb-sektion med en fremhævet baggrund */
+  .product_purchase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Knap tilføjet til kurv */
+  .btn {
+    padding: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  .lagerstatus {
+    font-size: 1.5rem;
+  }
+  .discount_produkt {
+    bottom: 10%;
+    right: 10%;
+    padding: 15px;
+    position: absolute;
+  }
+
+  .lagerstatus {
+    font-size: 1.2rem;
+  }
 }
 @media (min-width: 1000px) {
+  /* Generel tekststyling */
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+  }
+  /* productlist */
   .product_list_container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -156,5 +303,50 @@ h1 {
     background-color: grey;
     padding: 20px;
     color: white;
+  }
+
+  /* Product */
+
+  /* Layout for produktcontainer */
+  .product_container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+  }
+
+  /* Styling af produktinfo */
+  .product_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+    position: relative;
+  }
+
+  /* Styling af køb-sektion med en fremhævet baggrund */
+  .product_purchase {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Knap tilføjet til kurv */
+  .btn {
+    padding: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  .lagerstatus {
+    font-size: 1.5rem;
+  }
+  .discount_produkt {
+    bottom: 20%;
+    right: 20%;
+    padding: 20px;
+    position: absolute;
+  }
+
+  .logo {
+    font-size: 4rem;
   }
 }
