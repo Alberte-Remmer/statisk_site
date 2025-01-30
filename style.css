@@ -286,6 +286,11 @@ select {
   text-indent: 20px;
 }
 
+.strik {
+  text-decoration: line-through; /* Gennemstreger teksten */
+  color: grey; /* Gør den grå */
+}
+
 .lagerstatus {
   text-indent: 20px;
   color: green;
@@ -444,7 +449,7 @@ select {
     font-size: 1.5rem;
   }
   .discount_produkt {
-    bottom: 21%;
+    bottom: 19%;
     right: 21%;
     padding: 30px;
     position: absolute;
