@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+
+    <h1>Liste</h1>
+    <ul></ul>
+
+    <script>
+        //Hvordan man laver array - altså laver det om til tekst og derefter en lang tekststreng. 
+        const personer = ["Peter", "Troels", "keld"]
+        console.log(personer);
+        // inde i parantesen - tag et element, og gør det her ved det. Elementerne kommer i punktliste. 
+        const liElementer = personer.map(element => `<li>Navn: ${element}</li>`).join("");
+        console.log(liElementer);
+
+        //dette sætter det ind i html så man kan se det i tekst og ikke kun i konsollen. 
+        document.querySelector("ul").innerHTML = liElementer;
+        //join laver mit array (personer) om til en tekststring - tjek knosollen.
+        //Derefter sætter jeg det ind i mit html ved den sidste linje (inner.HTML)
+    </script>
+</body>
+
+</html>
