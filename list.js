@@ -5,6 +5,7 @@ fetch(`https://kea-alt-del.dk/t7/api/products/`)
   .then((data) => showList(data));
 
 function showList(products) {
+  console.log(products);
   let markup = "";
 
   //Ting jeg har fået chatten til at hjælpe mig med.
@@ -36,7 +37,6 @@ function showList(products) {
     }
 
     //Det her er det gamle som skal være der.
-
     markup += `<div class="card">
                 ${discountTag}
                 <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="${product.productdisplayname}" ${imageStyle}>
