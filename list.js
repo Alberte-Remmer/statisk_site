@@ -20,47 +20,25 @@ function showProductList(data) {
       (product) =>
         `
       <div class="card">
-          <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="${product.productdisplayname}">
+          <img class="${product.soldout && "soldout-img"}" src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="${product.productdisplayname}">
           <h2>${product.productdisplayname}</h2>
           <p class="grey">${product.articletype} | ${product.brandname}</p>
-          <p class="price">DKK ${product.price} ,-</p> <!-- Oprindelig pris -->
+
+           <div class="price">
+           <p class="${product.discount && "strik"}">${product.price} kr.</p>
+            <p class="tilbud ${product.discount && "isOnSale"}"> Now ${Math.floor(product.price - (product.price * product.discount) / 100)}kr.</p>
+        </div>
           <a class="read_more" href="product.html?id=${product.id}">Read more</a>
+        <div class="discount ${product.discount && "isOnSale"}">
+        <p>${product.discount}%</p>
+        </div>
+        <div class="soldout ${product.soldout && "isSoldOut"}">
+        <p>Sold out</p>
+        </div>
         </div>`
     )
     .join(""); // Samler alle produkterne til én lang HTML-streng
 
   // Indsætter produkterne i HTML-containeren
   productContainer.innerHTML = markup;
-
-  // ------------------ NY KODE (PLACERET NEDERST) ------------------
-
-  // Gennemgår produkterne igen og opdaterer dem med rabat & lagerstatus
-  data.forEach((product, index) => {
-    const productCard = document.querySelectorAll(".card")[index]; // Henter det tilsvarende produktkort
-    const priceElement = productCard.querySelector(".price"); // Finder pris-elementet
-
-    // Beregning af rabat
-    if (product.discount && product.discount > 0) {
-      let discountAmount = (product.price * product.discount) / 100;
-      let newPrice = product.price - discountAmount;
-      let discountTag = `<div class="discount">${product.discount}%</div>`;
-
-      // Opdaterer prisen med rabatvisning, hvor den nye pris er nedenunder den gamle
-      priceElement.innerHTML = `
-        <div class="price-container">
-          <p class="old_price strik">DKK ${product.price} ,-</p>
-          <p class="new_price">DKK ${newPrice.toFixed(2)} ,-</p>
-        </div>
-      `;
-
-      productCard.insertAdjacentHTML("afterbegin", discountTag); // Tilføjer rabatmærkat
-    }
-
-    // Lagerstatus
-    if (product.soldout) {
-      let stockStatus = `<div class="soldout">Sold Out</div>`;
-      productCard.insertAdjacentHTML("beforeend", stockStatus); // Tilføjer "Sold Out"-tekst
-      productCard.querySelector("img").style.filter = "grayscale(100%)"; // Gør billedet gråt
-    }
-  });
 }

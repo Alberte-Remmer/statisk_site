@@ -208,6 +208,7 @@ h1 {
   padding: 10px;
   border-radius: 3%;
   box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.3); /* Ydre skygge */
+  visibility: hidden;
 }
 
 .product_info {
@@ -233,6 +234,15 @@ h1 {
   color: white;
   border-radius: 3%;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ydre skygge */
+  visibility: hidden;
+}
+
+.isOnSale {
+  visibility: visible;
+}
+
+.isSoldOut {
+  visibility: visible;
 }
 
 .soldout-img {
@@ -399,19 +409,52 @@ select {
 
   .discount {
     position: absolute;
-    bottom: 2%;
-    right: 5%;
+    bottom: 0;
+    right: 0;
     background-color: lightgreen;
-    padding: 20px;
+    padding: 15px;
+    visibility: hidden;
   }
 
   .soldout {
     position: absolute;
-    top: 30%;
-    left: 30%;
+    top: 0;
+    left: 0;
     background-color: grey;
     padding: 20px;
     color: white;
+    visibility: hidden;
+  }
+
+  .tilbud {
+    visibility: hidden;
+  }
+
+  .discount_produkt {
+    bottom: 19%;
+    right: 21%;
+    padding: 30px;
+    position: absolute;
+    font-size: 2rem;
+    visibility: hidden;
+  }
+
+  .soldout2 {
+    color: red; /* Rød farve for udsolgt */
+    font-weight: bold;
+  }
+
+  .in-stock {
+    color: green; /* Grøn farve for på lager */
+    font-weight: bold;
+  }
+
+  .isOnSale {
+    visibility: visible;
+  }
+
+  .isSoldOut {
+    visibility: visible;
   }
 
   /* Product */
@@ -447,13 +490,6 @@ select {
   }
   .lagerstatus {
     font-size: 1.5rem;
-  }
-  .discount_produkt {
-    bottom: 19%;
-    right: 21%;
-    padding: 30px;
-    position: absolute;
-    font-size: 2rem;
   }
 
   .logo {
