@@ -153,14 +153,14 @@ h1 {
 
 .category a {
   background-color: #0554af;
-  padding: 40px;
+  padding: 15px;
   border-radius: 5px;
   display: flex; /* Brug flexbox til centrering */
   align-items: center; /* Centrér vertikalt */
   text-decoration: none;
   color: white;
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .category a:hover {
@@ -171,12 +171,37 @@ h1 {
 
 /* Produktliste */
 
+button {
+  background-color: #0554af;
+  padding: 10px 20px; /* Justeret padding så det matcher */
+  border-radius: 5px;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
+  font-size: 1rem;
+  border: none; /* Fjern standard kant */
+  cursor: pointer; /* Gør det tydeligt, at det er en klikbar knap */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #02244a; /* Ændrer baggrundsfarven ved hover */
+  transform: scale(1.02); /* Lidt zoom-effekt ved hover */
+}
+
+button a:hover {
+  background-color: transparent; /* Sørger for, at baggrundsfarven forbliver */
+  transform: none; /* Undgår dobbelt skalering */
+}
+
 .grey {
   color: grey;
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 .red {
   color: red;
@@ -322,6 +347,7 @@ select {
 
   .logo {
     font-size: 3rem;
+    margin-bottom: 2rem;
   }
   .product_list_container {
     display: grid;
@@ -383,6 +409,24 @@ select {
 
   .lagerstatus {
     font-size: 1.2rem;
+  }
+
+  button {
+    padding: 10px 30px; /* Justeret padding så det matcher */
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .category a {
+    padding: 40px;
+    font-size: 1.2rem;
+  }
+
+  .category a:hover {
+    background-color: #02244a; /* Ændrer baggrundsfarven ved hover */
+    transform: scale(1.02); /* Lidt zoom-effekt ved hover */
+    border-radius: 5px;
   }
 }
 @media (min-width: 1000px) {

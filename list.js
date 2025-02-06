@@ -7,6 +7,28 @@ document.querySelector(".category_title").textContent = `${myCategory}`;
 // Finder den HTML-container, hvor produkterne skal vises
 const productContainer = document.querySelector(".product_list_container");
 
+// Indsætter eventlistener på mine filtreringsknapper.
+document.querySelectorAll("button").forEach((knap) => knap.addEventListener("click", showFiltered));
+
+function showFiltered() {
+  const filter = this.dataset.gender;
+  if (filter == "All") {
+    showProductList(allData);
+  } else {
+    fraction = allData.filter((product) => product.gender === filter);
+    showProductList(fraction);
+  }
+}
+
+let allData;
+
+fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
+  .then((response) => response.json())
+  .then((json) => {
+    allData = json;
+    showProductList(allData);
+  });
+
 // Henter data fra API'et og filtrerer efter den valgte kategori
 fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
   .then((response) => response.json()) // Konverterer svaret til JSON
