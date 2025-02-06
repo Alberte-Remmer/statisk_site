@@ -1,14 +1,20 @@
 // Henter værdien af "category" fra URL'en (fx ?category=shoes)
-const myCategory = new URLSearchParams(window.location.search).get("category");
+const gender = new URLSearchParams(window.location.search).get("gender");
+let endpoint;
+if (myCategory) {
+  endpoint = `https://kea-alt-del.dk/t7/api/products?category=${myCategory}`;
+} else {
+  endpoint = "https://kea-alt-del.dk/t7/api/products";
+}
 
 // Indsætter kategori-navnet direkte i en eksisterende <h1>
-document.querySelector(".category_title").textContent = `${myCategory}`;
+document.querySelector(".category_title").textContent = `${myCategory ? myCategory : "All"}`;
 
 // Finder den HTML-container, hvor produkterne skal vises
 const productContainer = document.querySelector(".product_list_container");
 
 // Indsætter eventlistener på mine filtreringsknapper.
-document.querySelectorAll("button").forEach((knap) => knap.addEventListener("click", showFiltered));
+//document.querySelectorAll("button").forEach((knap) => knap.addEventListener("click", showFiltered));
 
 function showFiltered() {
   const filter = this.dataset.gender;
@@ -22,15 +28,15 @@ function showFiltered() {
 
 let allData;
 
-fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
-  .then((response) => response.json())
-  .then((json) => {
-    allData = json;
-    showProductList(allData);
-  });
+// fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
+//   .then((response) => response.json())
+//   .then((json) => {
+//     allData = json;
+//     showProductList(allData);
+//   });
 
 // Henter data fra API'et og filtrerer efter den valgte kategori
-fetch(`https://kea-alt-del.dk/t7/api/products?category=${myCategory}`)
+fetch(endpoint)
   .then((response) => response.json()) // Konverterer svaret til JSON
   .then(showProductList); // Sender data videre til showProductList-funktionen
 
